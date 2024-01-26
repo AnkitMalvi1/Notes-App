@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes | 0.1.0</title>
+    <link rel="stylesheet" href="notes.css">
+</head>
+<body>
+    <section class="notesPage">
+            <textarea id="title" contenteditable="true" placeholder="Enter the Title..." ></textarea>
+            <textarea id="notes" contenteditable="true" placeholder="Enter the Notes..." ></textarea>
+            <button id="addBtn" onclick="onAddBtn()">Add</button>
+    </section>
+
+    
+
+
+    <script>
+        
+        let addBtn = document.getElementById("addBtn");
+
+        function onAddBtn() {
+            let title = document.getElementById("title");
+            let notes = document.getElementById("notes");
+
+            // Get existing data from localStorage
+            let existingData = localStorage.getItem("Notes");
+
+            // Parse the existing data into a JavaScript array or initialize an empty array
+            let parsedData = existingData ? JSON.parse(existingData) : [];
+
+            // Create a new note object with a unique ID
+            let newNote = {
+                id: parsedData.length + 1, // Assign a unique ID based on the current array length
+                title: title.value,
+                notes: notes.value
+            };
+
+            // Add the new note to the array
+            parsedData.push(newNote);
+
+            // Save the updated array back to localStorage
+            localStorage.setItem("Notes", JSON.stringify(parsedData));
+            title.value = "";
+            notes.value = "";
+
+
+            // Log the updated array
+            console.log(parsedData);
+
+            // Log the last object in the updated array
+            let lastObject = parsedData[parsedData.length - 1];
+            console.log(lastObject);
+
+            // displayData(parsedData);
+        }
+
+
+        // function handleNotes(){
+        //    title = document.getElementById("title").value;
+        //    notes = document.getElementById("notes").value;
+        //    let titleset = localStorage.setItem("Title",`${title}`);
+        //    let notesset = localStorage.setItem("Notes",`${notes}`);
+        //    console.log(title)
+        // }
+        // title.innerHTML = localStorage.getItem("Title");
+        // notes.innerHTML = localStorage.getItem("Notes");
+        
+        // title.innerHTML = localStorage.getItem("Title")
+        // let titleok = localStorage.setItem("Title","abcd");
+        // title = titleok;
+
+
+
+    </script>
+</body>
+</html>

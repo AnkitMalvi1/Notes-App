@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes | 0.1.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="notesApp">
+        <section class="profileDiv">
+            <div class="nameDiv">
+                <h1>Hello, Note-taker</h1> 
+                <h3>Welcome to QuickNotes!</h3>
+            </div>
+            <div class="imgIcon">
+                <img src="./imgIcon.png" alt="">
+            </div>
+        </section>
+
+        <section id="listDiv">
+            <div class="listBox">
+                <a id="title" href="/notes.html">Enter your Title Here...</a>
+            </div>
+            <div class="listBox">
+                <a id="title" href="/notes.html">Enter your Title Here...</a>
+            </div>
+        </section>
+
+        <section class="notesIcon">
+            <img src="./notesIcon.png" alt="">
+        </section>
+
+        <section class="socialMedia">
+            <a href="https://github.com/AnkitMalvi1">GitHub</a>
+            <a href="https://a1developer.in/">Website</a>
+            <a href="mailto:ankitmalviya06219@gmail.com">Email</a>
+        </section>
+    </section>
+
+
+    <script>
+        let title = document.getElementById("title");
+        if(localStorage.getItem("Title")){
+            title.innerHTML = localStorage.getItem("Title");
+        }
+
+
+        let listDiv = document.getElementById("listDiv");
+        let listBox = document.getElementsByClassName("listBox");
+
+        function displayData(data) {
+    // Clear previous content in the listDiv
+        listDiv.innerHTML = "";
+
+        // Loop through the array and create a listBox for each note
+        data.forEach(note => {
+            let box = document.createElement("div");
+            listBox.innerHTML = `Title: ${note.title}`;
+            box.classList.add("listBox");
+            listDiv.appendChild(box);
+        });
+    }
+        
+    </script>
+</body>
+</html>
